@@ -15,9 +15,11 @@ Transporter is a goods delivery service company, either in the form of documents
 
 ### Pre-requisites
 laravel version 5.8.0
+
 mysql
 
 
 ### How to run
 Do `composer install` to install all dependencies.
+
 Run project `php artisan serve`.
