@@ -38,4 +38,5 @@ Route::group(['middleware' => 'kurir'], function () {
 
     Route::post('/pengiriman/input', 'API\PengirimanController@input');
     Route::post('/pengiriman/approve', 'API\PengirimanController@approve');
+    Route::get('/pengiriman/status/{id}', 'API\PengirimanController@status');
 });

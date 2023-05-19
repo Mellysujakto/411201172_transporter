@@ -55,6 +55,12 @@ class PengirimanController extends Controller
         if ($result->empty) {
             return response()->json("ID pengiriman $id is not found", 404);
         }
-        return response()->json("ID pengiriman $id is approved", 201);
+        return response()->json($result, 201);
+    }
+
+    public function status($id)
+    {
+        $detail = Pengiriman::find($id);
+        return response()->json($detail, 200);
     }
 }
