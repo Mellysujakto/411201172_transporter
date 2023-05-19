@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/kurir/register', 'API\KurirController@create');
+Route::post('/kurir/authentication', 'API\KurirController@getToken');
 
 Route::group(['middleware' => 'kurir'], function () {
     Route::get('/kurir', 'API\KurirController@list');

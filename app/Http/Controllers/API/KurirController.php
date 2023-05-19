@@ -70,4 +70,25 @@ class KurirController extends Controller
         Kurir::where('id', $id)->delete();
         return response()->json("Data Kurir with id $id already deleted", 200);
     }
+
+    public function getToken(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+        if ($validator->fails()) {
+            $messages = $validator->messages();
+            return response()->json(['message' => 'error', 'data' => $messages], 400);
+        }
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $result = Kurir::all()->where('email', $email)->where('password', $password)->first();
+        if ($result) {
+            return response()->json($result, 200);
+        }
+        return response()->json("Kurir unregistered!", 404);
+    }
 }
