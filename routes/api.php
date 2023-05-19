@@ -34,3 +34,6 @@ Route::get('/lokasi/{id}', 'API\LokasiController@getById');
 Route::post('/lokasi', 'API\LokasiController@create');
 Route::put('/lokasi', 'API\LokasiController@update');
 Route::delete('/lokasi/{id}', 'API\LokasiController@delete');
+
+Route::post('/pengiriman/input', 'API\PengirimanController@input');
+Route::post('/pengiriman/approve', 'API\PengirimanController@approve');
