@@ -14,7 +14,7 @@ class PengirimanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'no_pengiriman' => 'required',
-            'tanggal' => 'required',
+            'tanggal' => 'required|date',
             'jumlah_barang' => 'required',
         ]);
         if ($validator->fails()) {
