@@ -14,83 +14,83 @@ Transporter is a goods delivery service company, either in the form of documents
 ## Getting Started
 
 ### Pre-requisites
-laravel version 5.8.0
+1. laravel version 5.8.0
 
-mysql
+2. mysql
 
 
 ### How to run
-Do `composer install` to install all dependencies.
+1. Do `composer install` to install all dependencies.
 
-Import `transporter.sql` as this project's DB.
+2. Import `transporter.sql` as this project's DB.
 
-Run project `php artisan serve`.
+3. Run project `php artisan serve`.
 
 
 ### How to use
-Before execute another endpoints, please create a kurir account first by this endpoint:
+#### Before execute another endpoints, please create a kurir account first by this endpoint:
 
-`POST /kurir/register` 
+`POST /api/kurir/register` 
 
 
-After that, get the `api_token` by this endpoint: 
+#### After that, get the `api_token` by this endpoint: 
 
-`POST /kurir/authentication`
+`POST /api/kurir/authentication`
 
 and put it in each request as `Bearer Token`.
 
 
-Finally, you could execute these endpoints below:
+#### Finally, you could execute these endpoints below:
 
-CRUD for table kurir:
+##### CRUD for table kurir:
 
-`GET /kurir`
+`GET /api/kurir`
     
-`GET /kurir/{id}`
+`GET /api/kurir/{id}`
 
-`POST /kurir`
+`POST /api/kurir`
     
-`PUT /kurir`
+`PUT /api/kurir`
     
-`DELETE /kurir/{id}`
-
-
-CRUD for table barang:
-    
-`GET /barang`
-    
-`GET /barang/{id}`    
-    
-`POST /barang`
-    
-`PUT /barang`
-    
-`DELETE /barang/{id}`
+`DELETE /api/kurir/{id}`
 
 
-CRUD for table lokasi
-
-`GET /lokasi`
+##### CRUD for table barang:
     
-`GET /lokasi/{id}`    
+`GET /api/barang`
     
-`POST /lokasi`
+`GET /api/barang/{id}`    
     
-`PUT /lokasi`
+`POST /api/barang`
     
-`DELETE /lokasi/{id}`
+`PUT /api/barang`
+    
+`DELETE /api/barang/{id}`
 
 
-Input/submit pengiriman:
+##### CRUD for table lokasi
 
-`POST /pengiriman/input`
+`GET /api/lokasi`
+    
+`GET /api/lokasi/{id}`    
+    
+`POST /api/lokasi`
+    
+`PUT /api/lokasi`
+    
+`DELETE /api/lokasi/{id}`
+
+
+##### Input/submit pengiriman:
+
+`POST /api/pengiriman/input`
    
 
-Approve pengiriman: 
+##### Approve pengiriman: 
 
-`POST /pengiriman/approve`
+`POST /api/pengiriman/approve`
 
 
-Check status of pengiriman: 
+##### Check status of pengiriman: 
 
-`GET /pengiriman/status/{id}`
+`GET /api/pengiriman/status/{id}`
