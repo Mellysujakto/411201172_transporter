@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kurir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class KurirController extends Controller
 {
@@ -25,13 +26,21 @@ class KurirController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'password' => 'required',
-            'email' => 'email',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
         if ($validator->fails()) {
-            return response()->json('password is required', 400);
+            $messages = $validator->messages();
+            return response()->json(['message' => 'error', 'data' => $messages], 400);
         }
-        $result = Kurir::create($request->all());
+
+        $result = Kurir::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'api_token' => Str::random(60),
+        ]);
         return response()->json($result, 201);
     }
 
