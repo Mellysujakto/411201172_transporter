@@ -22,3 +22,9 @@ Route::get('/kurir/{id}', 'API\KurirController@getById');
 Route::post('/kurir', 'API\KurirController@create');
 Route::put('/kurir', 'API\KurirController@update');
 Route::delete('/kurir/{id}', 'API\KurirController@delete');
+
+Route::get('/barang', 'API\BarangController@list');
+Route::get('/barang/{id}', 'API\BarangController@getById');
+Route::post('/barang', 'API\BarangController@create');
+Route::put('/barang', 'API\BarangController@update');
+Route::delete('/barang/{id}', 'API\BarangController@delete');
