@@ -22,4 +22,75 @@ mysql
 ### How to run
 Do `composer install` to install all dependencies.
 
+Import `transporter.sql` as this project's DB.
+
 Run project `php artisan serve`.
+
+
+### How to use
+Before execute another endpoints, please create a kurir account first by this endpoint:
+
+`POST /kurir/register` 
+
+
+After that, get the `api_token` by this endpoint: 
+
+`POST /kurir/authentication`
+
+and put it in each request as `Bearer Token`.
+
+
+Finally, you could execute these endpoints below:
+
+CRUD for table kurir:
+
+`GET /kurir`
+    
+`GET /kurir/{id}`
+
+`POST /kurir`
+    
+`PUT /kurir`
+    
+`DELETE /kurir/{id}`
+
+
+CRUD for table barang:
+    
+`GET /barang`
+    
+`GET /barang/{id}`    
+    
+`POST /barang`
+    
+`PUT /barang`
+    
+`DELETE /barang/{id}`
+
+
+CRUD for table lokasi
+
+`GET /lokasi`
+    
+`GET /lokasi/{id}`    
+    
+`POST /lokasi`
+    
+`PUT /lokasi`
+    
+`DELETE /lokasi/{id}`
+
+
+Input/submit pengiriman:
+
+`POST /pengiriman/input`
+   
+
+Approve pengiriman: 
+
+`POST /pengiriman/approve`
+
+
+Check status of pengiriman: 
+
+`GET /pengiriman/status/{id}`
