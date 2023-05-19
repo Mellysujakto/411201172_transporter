@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Kurir;
 use App\Models\Pengiriman;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,6 +20,9 @@ class PengirimanController extends Controller
         if ($validator->fails()) {
             return response()->json('no_pengiriman, tanggal, and jumlah_barang is required', 400);
         }
+
+        $apiToken = $request->bearerToken();
+        $kurirId = Kurir::all()->where('api_token', $apiToken)->first()->id;
         $result = Pengiriman::create([
             'no_pengiriman' => $request->input('no_pengiriman'),
             'tanggal'  => $request->input('tanggal'),
@@ -27,9 +31,9 @@ class PengirimanController extends Controller
             'jumlah_barang'  => $request->input('jumlah_barang'),
             'harga_barang'  => $request->input('harga_barang'),
             'is_approved'  => false,
-            //todo get from token and get kurir_id by token
-            'kurir_id'  => $request->input('kurir_id'),
+            'kurir_id'  => $kurirId,
         ]);
+
         return response()->json($result, 201);
     }
 
