@@ -12,6 +12,7 @@
 */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index');
+    Route::resource('pengiriman', 'PengirimanController');
 });
 
 Auth::routes();

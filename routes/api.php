@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth.api'], function () {
     Route::put('/lokasi', 'API\LokasiAPIController@update');
     Route::delete('/lokasi/{id}', 'API\LokasiAPIController@delete');
 
-    Route::post('/pengiriman/input', 'API\PengirimanAPIController@input');
+    Route::post('/pengiriman', 'API\PengirimanAPIController@input');
     Route::post('/pengiriman/approve', 'API\PengirimanAPIController@approve');
     Route::get('/pengiriman/status/{id}', 'API\PengirimanAPIController@status');
     Route::get('/pengiriman/kurir/{kurirId}', 'API\PengirimanAPIController@listByKurirId');
