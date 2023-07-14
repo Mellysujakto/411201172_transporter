@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator as Validator;
 
-class UserController extends Controller
+class UserAPIController extends Controller
 {
     public function list()
     {

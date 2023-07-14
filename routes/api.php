@@ -14,29 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/kurir/register', 'API\UserController@create');
-Route::post('/kurir/authentication', 'API\UserController@getToken');
+Route::post('/kurir/register', 'API\UserAPIController@create');
+Route::post('/kurir/authentication', 'API\UserAPIController@getToken');
 
 Route::group(['middleware' => 'auth.api'], function () {
-    Route::get('/kurir', 'API\UserController@list');
-    Route::get('/kurir/{id}', 'API\UserController@getById');
-    Route::post('/kurir', 'API\UserController@create');
-    Route::put('/kurir', 'API\UserController@update');
-    Route::delete('/kurir/{id}', 'API\UserController@delete');
+    Route::get('/kurir', 'API\UserAPIController@list');
+    Route::get('/kurir/{id}', 'API\UserAPIController@getById');
+    Route::post('/kurir', 'API\UserAPIController@create');
+    Route::put('/kurir', 'API\UserAPIController@update');
+    Route::delete('/kurir/{id}', 'API\UserAPIController@delete');
 
-    Route::get('/barang', 'API\BarangController@list');
-    Route::get('/barang/{id}', 'API\BarangController@getById');
-    Route::post('/barang', 'API\BarangController@create');
-    Route::put('/barang', 'API\BarangController@update');
-    Route::delete('/barang/{id}', 'API\BarangController@delete');
+    Route::get('/barang', 'API\BarangApiController@list');
+    Route::get('/barang/{id}', 'API\BarangApiController@getById');
+    Route::post('/barang', 'API\BarangApiController@create');
+    Route::put('/barang', 'API\BarangApiController@update');
+    Route::delete('/barang/{id}', 'API\BarangApiController@delete');
 
-    Route::get('/lokasi', 'API\LokasiController@list');
-    Route::get('/lokasi/{id}', 'API\LokasiController@getById');
-    Route::post('/lokasi', 'API\LokasiController@create');
-    Route::put('/lokasi', 'API\LokasiController@update');
-    Route::delete('/lokasi/{id}', 'API\LokasiController@delete');
+    Route::get('/lokasi', 'API\LokasiAPIController@list');
+    Route::get('/lokasi/{id}', 'API\LokasiAPIController@getById');
+    Route::post('/lokasi', 'API\LokasiAPIController@create');
+    Route::put('/lokasi', 'API\LokasiAPIController@update');
+    Route::delete('/lokasi/{id}', 'API\LokasiAPIController@delete');
 
-    Route::post('/pengiriman/input', 'API\PengirimanController@input');
-    Route::post('/pengiriman/approve', 'API\PengirimanController@approve');
-    Route::get('/pengiriman/status/{id}', 'API\PengirimanController@status');
+    Route::post('/pengiriman/input', 'API\PengirimanAPIController@input');
+    Route::post('/pengiriman/approve', 'API\PengirimanAPIController@approve');
+    Route::get('/pengiriman/status/{id}', 'API\PengirimanAPIController@status');
+    Route::get('/pengiriman/kurir/{kurirId}', 'API\PengirimanAPIController@listByKurirId');
+    Route::get('/pengiriman', 'API\PengirimanAPIController@list');
 });

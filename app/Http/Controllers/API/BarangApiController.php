@@ -4,27 +4,33 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Lokasi;
+use App\Models\Barang;
 use Illuminate\Support\Facades\Validator;
 
-class LokasiController extends Controller
+class BarangApiController extends Controller
 {
     public function list()
     {
-        $list = Lokasi::all();
+        $list = Barang::all();
         return response()->json($list, 200);
     }
 
     public function getById($id)
     {
-        $detail = Lokasi::find($id);
+        $detail = Barang::find($id);
         return response()->json($detail, 200);
     }
 
 
     public function create(Request $request)
     {
-        $result = Lokasi::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'kode_barang' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json('kode_barang is required', 400);
+        }
+        $result = Barang::create($request->all());
         return response()->json($result, 201);
     }
 
@@ -34,14 +40,15 @@ class LokasiController extends Controller
         $id = $request->input('id');
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'kode_barang' => 'required',
         ]);
         if ($validator->fails()) {
-            return response()->json('id is required', 400);
+            return response()->json('id and kode_barang is required', 400);
         }
 
-        Lokasi::where('id', $id)
+        Barang::where('id', $id)
             ->update($request->all());
-        $result = Lokasi::find($id);
+        $result = Barang::find($id);
 
         return response()->json($result, 200);
     }
@@ -49,7 +56,7 @@ class LokasiController extends Controller
 
     public function delete($id)
     {
-        Lokasi::where('id', $id)->delete();
-        return response()->json("Data Lokasi with id $id already deleted", 200);
+        Barang::where('id', $id)->delete();
+        return response()->json("Data Barang with id $id already deleted", 200);
     }
 }

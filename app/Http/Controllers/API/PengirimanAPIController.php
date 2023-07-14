@@ -6,10 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kurir;
 use App\Models\Pengiriman;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
-class PengirimanController extends Controller
+class PengirimanAPIController extends Controller
 {
+    public function list()
+    {
+        $list = Pengiriman::all();
+        return response()->json($list, 200);
+    }
+
+    public function listByKurirId($kurirId)
+    {
+        $list = Pengiriman::all()->where('kurir_id', $kurirId);
+        return response()->json($list, 200);
+    }
+
     public function input(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -22,7 +35,7 @@ class PengirimanController extends Controller
         }
 
         $apiToken = $request->bearerToken();
-        $kurirId = Kurir::all()->where('api_token', $apiToken)->first()->id;
+        $kurirId = User::all()->where('api_token', $apiToken)->first()->id;
         $result = Pengiriman::create([
             'no_pengiriman' => $request->input('no_pengiriman'),
             'tanggal'  => $request->input('tanggal'),
