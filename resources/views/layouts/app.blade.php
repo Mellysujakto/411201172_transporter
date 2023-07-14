@@ -18,8 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="https://www.showvalue.com/wp-content/uploads/cropped-Icon-SV.png" type="image/x-icon">
-    <title>Sales Visit Kel 3 - @yield('title')</title>
+    <link rel="icon" href="https://cdn3.vectorstock.com/i/1000x1000/85/77/fast-delivery-icon-in-blue-style-for-any-projects-vector-35418577.jpg" type="image/x-icon">
+    <title>Transporter Melly - @yield('title')</title>
 
 
     <!-- Required meta tags -->
@@ -33,7 +33,7 @@
         <header>
             <nav class="navbar navbar-expand-sm bg-primary">
                 <div class="container">
-                    <a class="navbar-brand text-white" href="/">Sales Visit</a>
+                    <a class="navbar-brand text-white" href="/">Transporter</a>
                     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -49,9 +49,9 @@
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master
                                             Data</a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                            <a class="dropdown-item" href="/sales">Sales</a>
+                                            <a class="dropdown-item" href="/kurir">Kurir</a>
                                             <a class="dropdown-item" href="/barang">Barang</a>
-                                            <a class="dropdown-item" href="/outlet">Outlet</a>
+                                            <a class="dropdown-item" href="/lokasi">Lokasi</a>
                                         </div>
                                     </li>
                                 @endif
@@ -59,7 +59,7 @@
                                     <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                        <a class="dropdown-item" href="/survey">Survey Stok</a>
+                                        <a class="dropdown-item" href="/pengiriman">Pengiriman</a>
                                     </div>
                                 </li>
                             </ul>
@@ -142,15 +142,13 @@ document.getElementById('logout-form').submit();">
         <div class="p-5 rounded-3 bg-primary">
             <div class="row justify-content-between">
                 <div class="col-md-4 text-white">
-                    <h2 class="">Sales Visit</h2>
-                    <p>Jl. Kelompok no 3, Web Fullstack, Undira, Jakarta</p>
+                    <h2 class="">Transporter</h2>
+                    <p>Jl. Teknik Informatika, Web Fullstack, Undira, Jakarta</p>
                     <p>+62810000081</p>
-
-
                 </div>
                 <div class="col-md-4 text-white">
                     <h5>Built by:</h5>
-                    <p>Laras, Zainal, Roland, Fatwa, and Melly.</p>
+                    <p>Melly Sujakto - 411201172</p>
                 </div>
             </div>
         </div>
