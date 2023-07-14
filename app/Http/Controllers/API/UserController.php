@@ -17,7 +17,7 @@ class UserController extends Controller
         return response()->json($list, 200);
     }
 
-    public function listSales()
+    public function listKurir()
     {
         $list = User::all()->where("role",  'kurir');
         return response()->json($list, 200);
