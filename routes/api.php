@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/kurir/register', 'API\KurirController@create');
-Route::post('/kurir/authentication', 'API\KurirController@getToken');
+Route::post('/kurir/register', 'API\UserController@create');
+Route::post('/kurir/authentication', 'API\UserController@getToken');
 
 Route::group(['middleware' => 'auth.api'], function () {
-    Route::get('/kurir', 'API\KurirController@list');
-    Route::get('/kurir/{id}', 'API\KurirController@getById');
-    Route::post('/kurir', 'API\KurirController@create');
-    Route::put('/kurir', 'API\KurirController@update');
-    Route::delete('/kurir/{id}', 'API\KurirController@delete');
+    Route::get('/kurir', 'API\UserController@list');
+    Route::get('/kurir/{id}', 'API\UserController@getById');
+    Route::post('/kurir', 'API\UserController@create');
+    Route::put('/kurir', 'API\UserController@update');
+    Route::delete('/kurir/{id}', 'API\UserController@delete');
 
     Route::get('/barang', 'API\BarangController@list');
     Route::get('/barang/{id}', 'API\BarangController@getById');
