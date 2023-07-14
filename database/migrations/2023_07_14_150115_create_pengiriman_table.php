@@ -15,7 +15,7 @@ class CreatePengirimanTable extends Migration
     {
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_pengiriman', 15);
+            $table->string('no_pengiriman', 15)->unique();
             $table->date('tanggal');
             $table->integer('lokasi_id')->nullable();
             $table->string('barang_id')->nullable();
