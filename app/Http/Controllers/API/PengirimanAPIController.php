@@ -72,6 +72,34 @@ class PengirimanAPIController extends Controller
         return response()->json($listPengiriman3BulanIni, 200);
     }
 
+    //expect 1 lokasi_id
+    public function bestLokasiLastMonth()
+    {
+        $currentDate = Carbon::now();
+        $oneMonthAgo = $currentDate->subMonths(1)->format('Y-m-d');
+
+        $list = Pengiriman::all()->where('tanggal', '>=', $oneMonthAgo);
+
+        $counts = [];
+        foreach ($list as $item) {
+            $lokasiId = $item['lokasi_id'];
+            if (isset($counts[$lokasiId])) {
+                $counts[$lokasiId]++;
+            } else {
+                $counts[$lokasiId] = 1;
+            }
+        }
+
+        $bestOne = null;
+        foreach ($counts as $key => $value) {
+            if ($bestOne == null || $bestOne < $value) {
+                $bestOne = $key;
+            }
+        }
+
+        return response()->json($bestOne, 200);
+    }
+
     //expect barang_id dan jumlahnya
     public function barangDenganHargaLebihDari1000TahunIni()
     {

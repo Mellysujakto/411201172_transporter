@@ -49,8 +49,15 @@ class HomeController extends Controller
             array_push($listBarangTerbanyakDenganHargaLebihDari1000TahunIni, ['label' => $barangName, 'symbol' => $barangName, 'y' => $val]);
         }
 
+        //lokasiTerbanyakLastMonth
+        $lokasiTerbanyakLastMonthResponse = HttpClient::get('api/pengiriman/lokasi/best/lastMonth');
+        $lokasiIdTerbanyak = json_decode($lokasiTerbanyakLastMonthResponse->getContent(), true);
+        $lokasiNameTerbanyakResponse = HttpClient::get("api/lokasi/$lokasiIdTerbanyak");
+        $lokasiNameTerbanyak = json_decode($lokasiNameTerbanyakResponse->getContent(), true)['nama_lokasi'];
+
+        //jumlah Pengiriman ThreeMonthsAgo
         $pengirimanThreeMonthsAgo = HttpClient::get('api/pengiriman/threeMonthsAgo');
         $threeMonthsAgo = count(json_decode($pengirimanThreeMonthsAgo->getContent(), true));
-        return view('home', compact('listLokasiNameTerbanyakLebihDari100BulanIni', 'listBarangTerbanyakDenganHargaLebihDari1000TahunIni', 'threeMonthsAgo'));
+        return view('home', compact('listLokasiNameTerbanyakLebihDari100BulanIni', 'listBarangTerbanyakDenganHargaLebihDari1000TahunIni', 'threeMonthsAgo', 'lokasiNameTerbanyak'));
     }
 }

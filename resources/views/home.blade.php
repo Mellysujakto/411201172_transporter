@@ -8,9 +8,15 @@
     <div class="p-1 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5 text-center">
             <p>
-                Total Pengiriman selama 3 bulan terakhir:
+                Total Pengiriman Selama 3 Bulan Terakhir:
             </p>
             <h3> {{ $threeMonthsAgo }} pengiriman.</h3><br>
+
+            <p>
+                Lokasi Terbanyak yang Dituju dalam 1 Bulan Terakhir:
+            </p>
+            <h3> {{ $lokasiNameTerbanyak }}</h3><br>
+
 
             @if (Auth::user()->role == 'admin')
                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
