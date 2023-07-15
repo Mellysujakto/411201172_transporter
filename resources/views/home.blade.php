@@ -17,6 +17,10 @@
             </p>
             <h3> {{ $lokasiNameTerbanyak }}</h3><br>
 
+            <p>
+                Jumlah Barang Terbanyak yang Dikirim dalam 1 Tahun Terakhir:
+            </p>
+            <h3> {{ $namaBarangTerbanyakOneYear }} ({{ $jumlahBarangTerbanyakOneYear }} barang)</h3><br>
 
             @if (Auth::user()->role == 'admin')
                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>

@@ -58,6 +58,16 @@ class HomeController extends Controller
         //jumlah Pengiriman ThreeMonthsAgo
         $pengirimanThreeMonthsAgo = HttpClient::get('api/pengiriman/threeMonthsAgo');
         $threeMonthsAgo = count(json_decode($pengirimanThreeMonthsAgo->getContent(), true));
-        return view('home', compact('listLokasiNameTerbanyakLebihDari100BulanIni', 'listBarangTerbanyakDenganHargaLebihDari1000TahunIni', 'threeMonthsAgo', 'lokasiNameTerbanyak'));
+
+        //jumlah barang terbanyak 1 tahun terakhir
+        $jumlahBarangTerbanyakOneYearResponse = HttpClient::get('api/pengiriman/barang/bestNumber/lastYear');
+        $jumlahBarangTerbanyakOneYearJson = json_decode($jumlahBarangTerbanyakOneYearResponse->getContent(), true);
+        $jumlahBarangTerbanyakOneYear = $jumlahBarangTerbanyakOneYearJson['value'];
+        $barangId = $jumlahBarangTerbanyakOneYearJson['id'];
+
+        //nama barang terbanyak 1 tahun terakhir
+        $namaBarangTerbanyakOneYearResponse = HttpClient::get("api/barang/$barangId");
+        $namaBarangTerbanyakOneYear =  json_decode($namaBarangTerbanyakOneYearResponse->getContent(), true)['nama_barang'];
+        return view('home', compact('listLokasiNameTerbanyakLebihDari100BulanIni', 'listBarangTerbanyakDenganHargaLebihDari1000TahunIni', 'threeMonthsAgo', 'lokasiNameTerbanyak', 'jumlahBarangTerbanyakOneYear', 'namaBarangTerbanyakOneYear'));
     }
 }

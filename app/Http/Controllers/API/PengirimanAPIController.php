@@ -100,6 +100,38 @@ class PengirimanAPIController extends Controller
         return response()->json($bestOne, 200);
     }
 
+
+    //expect number of jumlah barang
+    public function bestTotalItemTerbanyakLastYear()
+    {
+        $currentDate = Carbon::now();
+        $oneYearAgo = $currentDate->subYears(1)->format('Y-m-d');
+
+        $list = Pengiriman::all()->where('tanggal', '>=', $oneYearAgo);
+
+        $counts = [];
+        foreach ($list as $item) {
+            $barangId = $item['barang_id'];
+            if (isset($counts[$barangId])) {
+                $counts[$barangId]++;
+            } else {
+                $counts[$barangId] = 1;
+            }
+        }
+
+        $bestOneNumber = null;
+        $bestKey = null;
+        foreach ($counts as $key => $value) {
+            if ($bestOneNumber == null || $bestOneNumber < $value) {
+                $bestOneNumber = $value;
+                $bestKey = $key;
+            }
+        }
+        $result = ['id' => $bestKey, 'value'=> $bestOneNumber];
+
+        return response()->json($result, 200);
+    }
+
     //expect barang_id dan jumlahnya
     public function barangDenganHargaLebihDari1000TahunIni()
     {
