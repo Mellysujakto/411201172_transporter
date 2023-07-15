@@ -22,6 +22,18 @@ class PengirimanAPIController extends Controller
         return response()->json($list, 200);
     }
 
+    public function totalPengiriman3BulanTerakhir()
+    {
+        $currentDate = Carbon::now();
+
+        $threeMonthsAgo = $currentDate->subMonths(3)->format('Y-m-d');
+
+        $listPengiriman3BulanIni = Pengiriman::all()->where('tanggal', '>=', $threeMonthsAgo);
+
+        return response()->json($listPengiriman3BulanIni, 200);
+    }
+
+
     public function input(Request $request)
     {
         $validator = Validator::make($request->all(), [

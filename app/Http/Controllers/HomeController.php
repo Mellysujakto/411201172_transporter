@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Client\HttpClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $dataPoints = [];
+        if (Auth::user()->role == 'admin') {
+            $dataPoints = [['label' => 'Oxygen', 'symbol' => 'O', 'y' => 46.6], ['label' => 'Silicon', 'symbol' => 'Si', 'y' => 27.7]];
+        }
+
+        $pengirimanThreeMonthsAgo = HttpClient::get('api/pengiriman/threeMonthsAgo');
+        $threeMonthsAgo = count(json_decode($pengirimanThreeMonthsAgo->getContent(), true));
+        return view('home', compact('dataPoints', 'threeMonthsAgo'));
     }
 }
