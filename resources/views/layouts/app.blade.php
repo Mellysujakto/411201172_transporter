@@ -43,7 +43,7 @@
                         @guest
                         @else
                             <ul class="navbar-nav me-auto mt-2 mt-lg-0 ">
-                                @if (Auth::user()->role == 'admin')
+                                {{-- @if (Auth::user()->role == 'admin')
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId"
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master
@@ -54,7 +54,7 @@
                                             <a class="dropdown-item" href="/lokasi">Lokasi</a>
                                         </div>
                                     </li>
-                                @endif
+                                @endif --}}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownId"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
