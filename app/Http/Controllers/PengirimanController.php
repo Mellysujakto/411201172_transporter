@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Client\HttpClient;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -57,7 +56,7 @@ class PengirimanController extends Controller
             'barang_id' => 'required|not_in:Silakan Pilih',
             'lokasi_id' => 'required|not_in:Silakan Pilih',
         ]);
-        
+
         $response = HttpClient::post('api/pengiriman', [], [], [], [], $request->getContent());
         if ($response->status() >= 400) {
             return redirect('pengiriman')->with('failed', 'Data pengiriman gagal ditambahkan');
