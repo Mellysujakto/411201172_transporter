@@ -4,7 +4,11 @@
 
 @section('content')
     <div class="p-4 mb-3">
-        <h2>Data Pengiriman Anda</h2>
+        <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+            <h2>Data Pengiriman Anda</h2>
+            <a name="" id="" class="btn btn-primary" href="pengiriman/create" role="button">Tambah Data
+                Pengiriman</a>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -43,10 +47,7 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a name="" id="" class="btn btn-primary" href="pengiriman/create" role="button">Tambah Data
-                Pengiriman</a>
-        </div>
+
 
     </div>
 @endsection
