@@ -18,6 +18,4 @@ class Pengiriman extends Model
         'kurir_id',
         'is_approved',
     ];
-    const CREATED_AT = null;
-    const UPDATED_AT = null;
 }
