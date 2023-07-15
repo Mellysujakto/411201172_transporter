@@ -25,3 +25,15 @@ Transporter is a goods delivery service company, either in the form of documents
 2. Import `transporter.sql` as this project's DB.
 
 3. Run project `php artisan serve`.
+
+### Started Pack
+
+    email: adminmelly@mail.com
+    pw: admin123
+    role: admin
+
+    ----------------------------
+
+    email: kurirmelly@mail.com
+    pw: kurir123
+    role: kurir
