@@ -43,4 +43,5 @@ Route::group(['middleware' => 'auth.api'], function () {
     Route::get('/pengiriman', 'API\PengirimanAPIController@list');
     Route::get('/pengiriman/threeMonthsAgo', 'API\PengirimanAPIController@totalPengiriman3BulanTerakhir');
     Route::get('/pengiriman/lokasi/lebihDariSeratusKali/thisMonth', 'API\PengirimanAPIController@lokasiPengirimanLebihDari100BulanIni');
+    Route::get('/pengiriman/barang/hargaLebihDari1000/thisYear', 'API\PengirimanAPIController@barangDenganHargaLebihDari1000TahunIni');
 });

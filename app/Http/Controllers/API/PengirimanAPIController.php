@@ -72,6 +72,24 @@ class PengirimanAPIController extends Controller
         return response()->json($listPengiriman3BulanIni, 200);
     }
 
+    //expect barang_id dan jumlahnya
+    public function barangDenganHargaLebihDari1000TahunIni()
+    {
+        $year = Carbon::now()->year();
+
+        $list = Pengiriman::all()->where('harga_barang', '>', 1000)->where('tanggal', '>=', "$year-1-1");
+
+        $counts = [];
+        foreach ($list as $item) {
+            $barangId = $item['barang_id'];
+            if (isset($counts[$barangId])) {
+                $counts[$barangId]++;
+            } else {
+                $counts[$barangId] = 1;
+            }
+        }
+        return response()->json($counts, 200);
+    }
 
     public function input(Request $request)
     {

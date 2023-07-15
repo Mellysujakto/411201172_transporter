@@ -10,9 +10,11 @@
             <p>
                 Total Pengiriman selama 3 bulan terakhir:
             </p>
-            <h3> {{$threeMonthsAgo}} pengiriman.</h3><br>
+            <h3> {{ $threeMonthsAgo }} pengiriman.</h3><br>
+
             @if (Auth::user()->role == 'admin')
                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
             @else
                 <h1 class="display-5 fw-bold ">Transporter</h1>
                 <p><img src="https://www.locate2u.com/wp-content/uploads/A-1-47-1024x576.webp" height="250">
@@ -34,7 +36,7 @@
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Data Lokasi Pengiriman yang mempunyai lebih dari 100 barang dikirim di Bulan ini."
+                text: "Data Lokasi Pengiriman yang mempunyai lebih dari 100 Barang Dikirim di Bulan ini."
             },
             data: [{
                 type: "doughnut",
@@ -46,6 +48,23 @@
             }]
         });
         chart.render();
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            theme: "light2",
+            animationEnabled: true,
+            title: {
+                text: "Data Barang yang Dikirim di Tahun ini dengan Harga Lebih Dari 1000."
+            },
+            data: [{
+                type: "doughnut",
+                indexLabel: "{symbol} - {y}",
+                yValueFormatString: "#,##0.0\"%\"",
+                showInLegend: true,
+                legendText: "{label} : {y}",
+                dataPoints: <?php echo json_encode($listBarangTerbanyakDenganHargaLebihDari1000TahunIni, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart2.render();
 
     }
 </script>
