@@ -22,6 +22,45 @@ class PengirimanAPIController extends Controller
         return response()->json($list, 200);
     }
 
+    public function lokasiPengirimanLebihDari100BulanIni()
+    {
+        $year = Carbon::now()->year();
+        $month = Carbon::now()->month();
+
+        //bulan ini
+        $listPengirimanBulanIni = Pengiriman::all()->where('tanggal', '<=', now()->format('Y-m-d'))->where('tanggal', '>=', "$year-$month-1")->toArray();
+
+        //counts barang
+        $countsBarang = [];
+        foreach ($listPengirimanBulanIni as $item) {
+            $barangId = $item['barang_id'];
+            if (isset($countsBarang[$barangId])) {
+                $countsBarang[$barangId]++;
+            } else {
+                $countsBarang[$barangId] = 1;
+            }
+        }
+
+        //cari lokasi yang barangnya lebih dari 100
+        $counts = [];
+        foreach ($listPengirimanBulanIni as $item) {
+            if ($countsBarang[$item['barang_id']] > 100) {
+                $lokasiId = $item['lokasi_id'];
+                if (isset($counts[$lokasiId])) {
+                    $counts[$lokasiId]++;
+                } else {
+                    $counts[$lokasiId] = 1;
+                }
+            }
+        }
+
+        $filteredCounts = array_filter($counts, function ($value) {
+            return $value > 100;
+        });
+
+        return response()->json($filteredCounts, 200);
+    }
+
     public function totalPengiriman3BulanTerakhir()
     {
         $currentDate = Carbon::now();

@@ -34,7 +34,7 @@
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Data Lokasi Pengiriman lebih dari 100 barang di Bulan ini."
+                text: "Data Lokasi Pengiriman yang mempunyai lebih dari 100 barang dikirim di Bulan ini."
             },
             data: [{
                 type: "doughnut",
@@ -42,7 +42,7 @@
                 yValueFormatString: "#,##0.0\"%\"",
                 showInLegend: true,
                 legendText: "{label} : {y}",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                dataPoints: <?php echo json_encode($listLokasiNameTerbanyakLebihDari100BulanIni, JSON_NUMERIC_CHECK); ?>
             }]
         });
         chart.render();

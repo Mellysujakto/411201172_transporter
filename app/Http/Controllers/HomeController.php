@@ -25,13 +25,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dataPoints = [];
-        if (Auth::user()->role == 'admin') {
-            $dataPoints = [['label' => 'Oxygen', 'symbol' => 'O', 'y' => 46.6], ['label' => 'Silicon', 'symbol' => 'Si', 'y' => 27.7]];
+        $lokasiTerbanyakLebihDari100BulanIniResponse = HttpClient::get('api/pengiriman/lokasi/lebihDariSeratusKali/thisMonth');
+        $lokasiTerbanyakLebihDari100BulanIni = json_decode($lokasiTerbanyakLebihDari100BulanIniResponse->getContent(), true);
+        $total100Percent = array_sum($lokasiTerbanyakLebihDari100BulanIni);
+        $listLokasiNameTerbanyakLebihDari100BulanIni = [];
+        foreach ($lokasiTerbanyakLebihDari100BulanIni as $key => $value) {
+            $val = $value / $total100Percent * 100;
+            $lokasiNameResponse = HttpClient::get("api/lokasi/$key");
+            $lokasiName = json_decode($lokasiNameResponse->getContent(), true)['nama_lokasi'];
+            array_push($listLokasiNameTerbanyakLebihDari100BulanIni, ['label'=> $lokasiName, 'symbol'=> $lokasiName, 'y' => $val]);
         }
+
+
+
 
         $pengirimanThreeMonthsAgo = HttpClient::get('api/pengiriman/threeMonthsAgo');
         $threeMonthsAgo = count(json_decode($pengirimanThreeMonthsAgo->getContent(), true));
-        return view('home', compact('dataPoints', 'threeMonthsAgo'));
+        return view('home', compact('listLokasiNameTerbanyakLebihDari100BulanIni', 'threeMonthsAgo'));
     }
 }
