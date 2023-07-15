@@ -39,7 +39,7 @@ class PengirimanController extends Controller
 
         $responseBarang = HttpClient::get('api/barang');
         $barang = json_decode($responseBarang->getContent(), true);
-        $responseLokasi = HttpClient::get('api/lokasi');
+        $responseLokasi = HttpClient::get('api/lokasi/availableList');
         $lokasi = json_decode($responseLokasi->getContent(), true);
         return view('pengiriman.create', compact('barang', 'lokasi', 'noTransaksi'));
     }

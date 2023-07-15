@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth.api'], function () {
     Route::delete('/barang/{id}', 'API\BarangApiController@delete');
 
     Route::get('/lokasi', 'API\LokasiAPIController@list');
+    Route::get('/lokasi/availableList', 'API\LokasiAPIController@availableList');
     Route::get('/lokasi/{id}', 'API\LokasiAPIController@getById');
     Route::post('/lokasi', 'API\LokasiAPIController@create');
     Route::put('/lokasi', 'API\LokasiAPIController@update');
