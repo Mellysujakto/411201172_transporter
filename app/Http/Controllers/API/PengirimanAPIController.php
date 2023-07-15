@@ -12,13 +12,13 @@ class PengirimanAPIController extends Controller
 {
     public function list()
     {
-        $list = Pengiriman::all();
+        $list = Pengiriman::orderBy('created_at', 'desc')->get();
         return response()->json($list, 200);
     }
 
     public function listByKurirId($kurirId)
     {
-        $list = Pengiriman::all()->where('kurir_id', $kurirId);
+        $list = Pengiriman::orderBy('created_at', 'desc')->get()->where('kurir_id', $kurirId);
         return response()->json($list, 200);
     }
 

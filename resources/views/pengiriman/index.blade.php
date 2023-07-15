@@ -17,6 +17,7 @@
                         <th scope="col">Jumlah Barang</th>
                         <th scope="col">Harga Barang</th>
                         <th scope="col">Kurir</th>
+                        <th scope="col">Created At</th>
                         <th scope="col">Is Approved</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                             <td>{{ $product['jumlah_barang'] }}</td>
                             <td>{{ $product['harga_barang'] }}</td>
                             <td>{{ $product['kurir_id'] }}</td>
+                            <td>{{ $product['created_at'] }}</td>
                             <td>{{ $product['is_approved'] }}</td>
                         </tr>
                     @endforeach
